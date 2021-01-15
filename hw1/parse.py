@@ -64,7 +64,13 @@ class Parser(object):
                 self.eat(PLUS)
             elif token.type == MINUS:
                 self.eat(MINUS)
-
+            
+            #  if token.type == MINUS:
+            #    if node == None:
+            #        node = NumNode(Token(INTEGER, 0))
+            #    elif node.type == 
+            #if node == None:
+            #    node = NumNode(Token(INTEGER, 0))
             node = BinOp(left=node, op=token, right=self.term())
 
         return node
