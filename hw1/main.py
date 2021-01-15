@@ -13,9 +13,7 @@ def main():
     text = input()
     lexer = Lexer(text)
     ast = Parser(lexer)
-    interpreter = Interpreter(ast)
-    result = interpreter.interpret()
-    print(result)
+    print(eval(ast))
 
 
 if __name__ == '__main__':
