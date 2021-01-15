@@ -6,7 +6,7 @@ from lexer import Lexer
 
 
 def eval(ast):
-    interpreter = Interpreter(parser)
+    interpreter = Interpreter(ast)
     return interpreter.interpret()
 
 def main():
