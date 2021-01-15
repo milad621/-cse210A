@@ -3,6 +3,7 @@
 
 from lexer import Lexer, Token, INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF
 from parse import Parser
+from ast import BinOp, Num
 
 class NodeVisitor(object):
     def visit(self, node):
