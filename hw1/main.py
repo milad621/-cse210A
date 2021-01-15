@@ -10,7 +10,7 @@ def eval(ast):
     return interpreter.interpret()
 
 def main():
-    text = raw_input()
+    text = input()
     lexer = Lexer(text)
     ast = Parser(lexer)
     interpreter = Interpreter(ast)

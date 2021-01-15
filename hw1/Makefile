@@ -8,6 +8,7 @@ help:
 	@echo "clean-pyc - remove Python file artifacts"
 	@echo "clean-build - remove build artifacts"
 	@echo "(default) - create ARITH language interpreter binary"
+	@echo "run - run ARITH language interpreter"
 
 clean: clean-build clean-pyc
 	
@@ -20,3 +21,6 @@ clean-pyc:
 clean-build:
 	rm -fr build/
 	rm -fr dist/
+	
+run:
+	python3 main.py
