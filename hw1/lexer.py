@@ -55,9 +55,11 @@ class Lexer(object):
         while self.current_char is not None and self.current_char.isspace():
             self.advance()
 
-    def integer(self):
+    def integer(self, neg=False):
         """Return a (multidigit) integer consumed from the input."""
         result = ''
+        if neg:
+            result = '-'
         while self.current_char is not None and self.current_char.isdigit():
             result += self.current_char
             self.advance()
@@ -84,6 +86,8 @@ class Lexer(object):
 
             if self.current_char == '-':
                 self.advance()
+                if self.current_char.isdigit():
+                    return Token(INTEGER, self.integer(True))
                 return Token(MINUS, '-')
 
             if self.current_char == '*':
