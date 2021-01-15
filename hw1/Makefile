@@ -1,7 +1,7 @@
 .PHONY: clean-pyc clean-build docs clean
 
 all:
-	pyinstaller --debug --onefile --noupx arith_main.py
+	pyinstaller --onefile --noupx arith_main.py
 	cp dist/arith_main arith
 
 help:

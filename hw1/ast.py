@@ -4,7 +4,7 @@
 class AST(object):
     pass
     
-class Num(AST):
+class NumNode(AST):
     def __init__(self, token):
         self.token = token
         self.value = token.value

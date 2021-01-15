@@ -1,7 +1,7 @@
 """Parse string input to AST"""
 # Got help from https://ruslanspivak.com/lsbasi-part7/
 
-from ast import BinOp, Num
+from ast import BinOp, NumNode
 from lexer import Lexer, Token, INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF
 
 class Parser(object):
@@ -28,7 +28,7 @@ class Parser(object):
         token = self.current_token
         if token.type == INTEGER:
             self.eat(INTEGER)
-            return Num(token)
+            return NumNode(token)
         elif token.type == LPAREN:
             self.eat(LPAREN)
             node = self.expr()

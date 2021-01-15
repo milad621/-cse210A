@@ -3,7 +3,7 @@
 
 from lexer import Lexer, Token, INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF
 from parse import Parser
-from ast import BinOp, Num
+from ast import BinOp, NumNode
 
 class NodeVisitor(object):
     def visit(self, node):
@@ -29,7 +29,7 @@ class Interpreter(NodeVisitor):
         elif node.op.type == DIV:
             return self.visit(node.left) / self.visit(node.right)
 
-    def visit_Num(self, node):
+    def visit_NumNode(self, node):
         return node.value
 
     def interpret(self):
