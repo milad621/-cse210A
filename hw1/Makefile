@@ -1,8 +1,8 @@
 .PHONY: clean-pyc clean-build docs clean
 
 all:
-	pyinstaller --onefile --noupx arith_main.py
-	cp dist/arith_main arith
+	pyinstaller --onefile --noupx single_file.py
+	cp dist/single_file arith
 
 help:
 	@echo "clean - remove all build, test, coverage and Python artifacts"
@@ -26,4 +26,4 @@ clean-build:
 	rm -f arith
 	
 run:
-	python3 main.py
+	python3 arith_main.py	
