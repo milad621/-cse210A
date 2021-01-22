@@ -86,16 +86,16 @@ class Parser(object):
         node = self.aexp()
         if self.current_token.type == '=':
             self.eat('=')
-            return BinOp(left=node, op='=', right=self.aexp())
+            return BinOp(left=node, op=Token('=', '='), right=self.aexp())
         if self.current_token.type == '<':
             self.eat('<')
-            return BinOp(left=node, op='<', right=self.aexp())
+            return BinOp(left=node, op=Token('<','<'), right=self.aexp())
 
     def b_and(self):
         node = self.bcmpr()
         while self.current_token.type == '∧':
             self.eat('∧')
-            node = BinOp(left=node, op='∧', right=self.bcmpr())
+            node = BinOp(left=node, op=Token('∧','∧'), right=self.bcmpr())
         return node
         
     def b_or(self):
@@ -108,7 +108,7 @@ class Parser(object):
         node = self.b_and()
         if self.current_token.type == '∨':
             self.eat('∨')
-            node = BinOp(left=node, op='∨', right=self.b_and())
+            node = BinOp(left=node, op=Token('∨','∨'), right=self.b_and())
         return node
 
     def command(self):
