@@ -80,8 +80,9 @@ class Parser(object):
             self.eat(RPAREN)
             return node
         if self.current_token.type == BOOLEAN:
+            b = Bool(self.current_token)
             self.eat(BOOLEAN)
-            return Bool(self.current_token)
+            return b
         node = self.aexp()
         if self.current_token.type == '=':
             self.eat('=')
@@ -133,10 +134,17 @@ class Parser(object):
             c2 = self.comma_command()
             return If(b, c1, c2)
         if self.current_token.type == 'while':
+            # print("current token:", self.current_token.type, self.current_token.value)
             self.eat('while')
+            # print("current token:", self.current_token.type, self.current_token.value)
             b = self.b_or()
+            # print(b, b.token, b.value)
+            # print("current token:", self.current_token.type, self.current_token.value)
             self.eat('do')
+            # print("current token:", self.current_token.type, self.current_token.value)
             c = self.comma_command()
+            # print(c)
+            # print("current token:", self.current_token.type, self.current_token.value)
             return While(b, c)
         if self.current_token.type == VAR:
             x = Var(self.current_token.value)
