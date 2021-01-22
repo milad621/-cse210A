@@ -73,6 +73,7 @@ class Interpreter(NodeVisitor):
             self.visit(node.c2)
         
     def visit_While(self, node):
+        # print('b: ', self.visit(node.b))
         while self.visit(node.b):
             self.visit(node.c)
 

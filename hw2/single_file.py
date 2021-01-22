@@ -315,8 +315,9 @@ class Parser(object):
             self.eat(RPAREN)
             return node
         if self.current_token.type == BOOLEAN:
+            b = Bool(self.current_token)
             self.eat(BOOLEAN)
-            return Bool(self.current_token)
+            return b
         node = self.aexp()
         if self.current_token.type == '=':
             self.eat('=')
