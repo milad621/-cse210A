@@ -142,7 +142,7 @@ class Parser(object):
             # print("current token:", self.current_token.type, self.current_token.value)
             self.eat('do')
             # print("current token:", self.current_token.type, self.current_token.value)
-            c = self.comma_command()
+            c = self.command()
             # print(c)
             # print("current token:", self.current_token.type, self.current_token.value)
             return While(b, c)
@@ -157,9 +157,11 @@ class Parser(object):
         """ c ::= c1 ;c2 
         | { comm }"""
         node = self.command()
+        # print(node)
         while self.current_token.type == ';':
             self.eat(';')
             c2 = self.command()
+            # print(c2)
             node =  Comma(node, c2)
         return node
     def parse(self):
