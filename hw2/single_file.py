@@ -381,7 +381,6 @@ class Parser(object):
         if self.current_token.type == 'if':
             self.eat('if')
             b = self.b_or()
-            print("b", b)
             self.eat('then')
             c1 = self.comma_command()
             self.eat('else')
