@@ -482,7 +482,7 @@ class Interpreter(NodeVisitor):
         first = True
         for i in self.report_vars:
             if first == False:
-                s += ','
+                s += ', '
             first = False
             s += i
             s += ' → '
