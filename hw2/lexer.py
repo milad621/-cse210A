@@ -148,6 +148,14 @@ class Lexer(object):
                 self.advance()
                 return Token('>', '>')
                 
+            if self.current_word == '>=':
+                self.advance()
+                return Token('>=', '>=')
+                
+            if self.current_word == '<=':
+                self.advance()
+                return Token('<=', '<=')
+                
             if self.current_word == 'false':
                 self.advance()
                 return Token(BOOLEAN, False)

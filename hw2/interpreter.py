@@ -36,6 +36,10 @@ class Interpreter(NodeVisitor):
             return self.visit(node.left) > self.visit(node.right)
         elif node.op.type == '<':
             return self.visit(node.left) < self.visit(node.right)
+        elif node.op.type == '<=':
+            return self.visit(node.left) <= self.visit(node.right)
+        elif node.op.type == '>=':
+            return self.visit(node.left) >= self.visit(node.right)
         elif node.op.type == '∧':
             return self.visit(node.left) and self.visit(node.right)
         elif node.op.type == '∨':
