@@ -414,6 +414,7 @@ class Interpreter(NodeVisitor):
     def __init__(self, parser):
         self.parser = parser
         self.vars = {}
+        self.report_vars = []
 
     def visit_BinOp(self, node):
         if node.op.type == PLUS:
@@ -451,6 +452,8 @@ class Interpreter(NodeVisitor):
     
     def visit_Assign(self, node):
         name = node.x.name
+        if name not in self.report_vars:
+            self.report_vars.append(name)
         val = self.visit(node.e)
         self.vars[name] = val
         
@@ -468,6 +471,7 @@ class Interpreter(NodeVisitor):
             self.visit(node.c2)
         
     def visit_While(self, node):
+        # print('b: ', self.visit(node.b))
         while self.visit(node.b):
             self.visit(node.c)
 
@@ -476,7 +480,7 @@ class Interpreter(NodeVisitor):
         self.visit(tree)
         s = '{'
         first = True
-        for i in self.vars.keys():
+        for i in self.report_vars:
             if first == False:
                 s += ','
             first = False
