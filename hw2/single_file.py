@@ -480,6 +480,7 @@ class Interpreter(NodeVisitor):
         self.visit(tree)
         s = '{'
         first = True
+        self.report_vars.sort()
         for i in self.report_vars:
             if first == False:
                 s += ', '
