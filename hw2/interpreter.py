@@ -70,7 +70,7 @@ class Interpreter(NodeVisitor):
         self.visit(node.right)
         
     def visit_If(self, node):
-        print('b: ', self.visit(node.b))
+        # print('b: ', self.visit(node.b))
         if self.visit(node.b):
             self.visit(node.c1)
         else:

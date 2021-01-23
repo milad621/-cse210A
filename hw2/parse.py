@@ -11,6 +11,7 @@ class Parser(object):
         self.current_token = self.lexer.get_next_token()
 
     def error(self):
+        print("current_token", self.current_token)
         raise Exception('Invalid syntax')
 
     def eat(self, token_type):
@@ -124,6 +125,7 @@ class Parser(object):
             self.eat('}')
             return c
         if self.current_token.type == 'skip':
+            self.eat('skip')
             return Skip()
         if self.current_token.type == 'if':
             self.eat('if')
