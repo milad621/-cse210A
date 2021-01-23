@@ -47,6 +47,7 @@ class Skip(AST):
 # c1 ; c2          
 class Comma(AST):
     def __init__(self, left, right):
+        # print("creating comma", left, right)
         self.left = left
         self.right = right
             

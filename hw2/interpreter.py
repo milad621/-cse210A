@@ -70,6 +70,7 @@ class Interpreter(NodeVisitor):
         self.visit(node.right)
         
     def visit_If(self, node):
+        print('b: ', self.visit(node.b))
         if self.visit(node.b):
             self.visit(node.c1)
         else:
@@ -82,6 +83,7 @@ class Interpreter(NodeVisitor):
 
     def interpret(self):
         tree = self.parser.parse()
+        # print("top level:", tree)
         self.visit(tree)
         s = '{'
         first = True

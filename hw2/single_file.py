@@ -377,7 +377,7 @@ class Parser(object):
             # print("current token:", self.current_token.type, self.current_token.value)
             self.eat('do')
             # print("current token:", self.current_token.type, self.current_token.value)
-            c = self.comma_command()
+            c = self.command()
             # print(c)
             # print("current token:", self.current_token.type, self.current_token.value)
             return While(b, c)
