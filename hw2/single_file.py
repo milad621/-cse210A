@@ -359,6 +359,7 @@ class Parser(object):
             self.eat('}')
             return c
         if self.current_token.type == 'skip':
+            self.eat('skip')
             return Skip()
         if self.current_token.type == 'if':
             self.eat('if')
