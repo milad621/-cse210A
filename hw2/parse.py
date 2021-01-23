@@ -91,6 +91,15 @@ class Parser(object):
         if self.current_token.type == '<':
             self.eat('<')
             return BinOp(left=node, op=Token('<','<'), right=self.aexp())
+        if self.current_token.type == '>':
+            self.eat('>')
+            return BinOp(left=node, op=Token('>','>'), right=self.aexp())
+        if self.current_token.type == '<=':
+            self.eat('<=')
+            return BinOp(left=node, op=Token('<=','<='), right=self.aexp())
+        if self.current_token.type == '>=':
+            self.eat('>=')
+            return BinOp(left=node, op=Token('>=','>='), right=self.aexp())
 
     def b_and(self):
         node = self.bcmpr()

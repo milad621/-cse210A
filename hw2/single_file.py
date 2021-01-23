@@ -206,6 +206,14 @@ class Lexer(object):
                 self.advance()
                 return Token('>', '>')
                 
+            if self.current_word == '>=':
+                self.advance()
+                return Token('>=', '>=')
+                
+            if self.current_word == '<=':
+                self.advance()
+                return Token('<=', '<=')
+                
             if self.current_word == 'false':
                 self.advance()
                 return Token(BOOLEAN, False)
@@ -325,6 +333,15 @@ class Parser(object):
         if self.current_token.type == '<':
             self.eat('<')
             return BinOp(left=node, op=Token('<','<'), right=self.aexp())
+        if self.current_token.type == '>':
+            self.eat('>')
+            return BinOp(left=node, op=Token('>','>'), right=self.aexp())
+        if self.current_token.type == '<=':
+            self.eat('<=')
+            return BinOp(left=node, op=Token('<=','<='), right=self.aexp())
+        if self.current_token.type == '>=':
+            self.eat('>=')
+            return BinOp(left=node, op=Token('>=','>='), right=self.aexp())
 
     def b_and(self):
         node = self.bcmpr()
@@ -364,6 +381,7 @@ class Parser(object):
         if self.current_token.type == 'if':
             self.eat('if')
             b = self.b_or()
+            print("b", b)
             self.eat('then')
             c1 = self.comma_command()
             self.eat('else')
@@ -432,6 +450,10 @@ class Interpreter(NodeVisitor):
             return self.visit(node.left) > self.visit(node.right)
         elif node.op.type == '<':
             return self.visit(node.left) < self.visit(node.right)
+        elif node.op.type == '<=':
+            return self.visit(node.left) <= self.visit(node.right)
+        elif node.op.type == '>=':
+            return self.visit(node.left) >= self.visit(node.right)
         elif node.op.type == '∧':
             return self.visit(node.left) and self.visit(node.right)
         elif node.op.type == '∨':
