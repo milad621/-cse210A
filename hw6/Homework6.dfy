@@ -3,7 +3,7 @@ datatype List<T> = Nil | Cons(T, List<T>)
 
 function length<T>(xs:List<T>) : int
 	ensures length(xs) >= 0
-	ensuree xs == Nill => length(xs) == 0
+	ensures xs == Nil ==> length(xs) == 0
 {
 	match xs
 		case Nil => 0
@@ -13,14 +13,14 @@ function length<T>(xs:List<T>) : int
 function flatten<T>(tree:Tree<T>):List<T>
 {
 	match tree
-		case Leaf => Cons(xs,Nil)
+		case Leaf => Cons(Leaf,Nil)
 		case Node(l, r, x) => Cons(flatten(l), Cons(x, flatten(r)))
 	
 }
 
 function append<T>(xs:List<T>, ys:List<T>):List<T>
-	ensures xs == Nil => append(xs,ys) == ys
-	ensures ys == Nil => append(xs,ys) == xs
+	ensures xs == Nil ==> append(xs,ys) == ys
+	ensures ys == Nil ==> append(xs,ys) == xs
 	ensures length(append(xs,ys)) == length(xs) + length(ys)
 {
 	match xs
@@ -30,7 +30,7 @@ function append<T>(xs:List<T>, ys:List<T>):List<T>
 
 
 method emma<T>(xs:List<T>, ys:List<T>)
-	ensures ensures length(append(xs,ys)) == length(xs) + length(ys)
+	ensures length(append(xs,ys)) == length(xs) + length(ys)
 	// Lemma: forall xs:List<T>, ys:List<T> . length(append(xs,ys)) == length(xs) + length(yss)
 {
 	match xs
